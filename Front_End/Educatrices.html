@@ -67,7 +67,7 @@
       <input id="prenom" name="prenom" maxlength="40" required />
       <!=================Nom Famille===========================>
       <label for="nomfam">Nom Famille: </label>
-      <input id="nomfam" name="nomfam" maxlength="40" required />
+      <input id="nomfam" name="nomfam" maxlength="40" required value "   "/>
       <!=================Initials==============================>
       <label for="init">Initials: </label>
       <input id="init" name="init" maxlength="5" value="     "/>
@@ -81,17 +81,18 @@
     <script>
       let z_nomfam = document.getElementById("nomfam");
       let z_prenom = document.getElementById("prenom");
-        if(z_nomfam !== undefined)
-        {        
-          let z_init = document.getElementById("init");
-          if ((z_init.value == "     ")) 
-          {
+      console.log("antes del if " + z_nomfam.value)
+      if(z_nomfam.value !== "   ")
+      {             
+        let z_init = document.getElementById("init");
+        if (z_init.value == "     ")
+        {
           // Initials des noms
-            let nomprenom = z_prenom.value + " " + z_nomfam.value;
-            const popo = retourninitials(nomprenom);
-            document.getElementById("init").value = retourninitials(nomprenom);
-          }
+          let nomprenom = z_prenom.value + " " + z_nomfam.value;
+          const popo = retourninitials(nomprenom);
+          document.getElementById("init").value = retourninitials(nomprenom);
         }
+      }
     </script>
 
   </body>
