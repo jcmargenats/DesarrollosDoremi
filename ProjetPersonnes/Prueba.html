@@ -62,7 +62,69 @@
 
   <body>
     <form>
-      <p>
+      <ul>
+        <li>
+          <label for="nom1">Nom : </label>
+          <input type="text" id="nom1" name="nom1" />
+        </li>
+        <li>
+          <label for="nom2">2me. Nom :</label>
+          <input type="text" id="nom2" name="nom2" />
+        </li>
+        <li>
+          <label for="nofam">Nom famille:</label>
+          <input type="text" id="nomfam" name="nomfam" />
+        </li>
+        <li>
+          <label for="init">Initiels:</label>
+          <input type="text" id="init" name="init" />
+        </li>
+        <li>
+          <label for="trait">Traitement:</label>
+          <input type="text" id="traitem" name="traitem" />
+        </li>
+        <li>
+          <label for="nomemp">Nom entreprise:</label>
+          <input type="text" id="nomemp" name="nomemp" />
+        </li>
+        <li>
+          <label for="numciv">Numèro:</label>
+          <input type="text" id="numciv" name="numciv" />
+        </li>
+        <li>
+          <label for="rue">Rue:</label>
+          <input type="text" id="rue" name="rue" />
+        </li>
+
+        <li>
+          <label for="ville">Ville:</label>
+          <input type="text" id="ville" name="ville" />
+        </li>
+        <li>
+          <label for="prov">Provence:</label>
+          <input type="text" id="prov" name="prov" />
+        </li>
+        <li>
+          <label for="codpos">Code Postal:</label>
+          <input type="text" id="codpos" name="codpos" />
+        </li>
+        <li>
+          <label for="telephone">Téléphone:</label>
+          <input type="text" id="telephone" name="telephone" />
+        </li>
+        <li>
+          <label for="courriel">Courriel:</label>
+          <input type="email" id="courriel" name="courriel" />
+        </li>
+        <li>
+          <label for="docident">Document Identité:</label>
+          <input type="text" id="docident" name="docident" />
+        </li>
+        <li>
+          <label for="genre">Genre:</label>
+          <input type="text" id="genre" name="genre" />
+        </li>
+
         <label for="mail">
           <span
             >Por favor, introduzca una dirección de correo electrónico:
@@ -70,7 +132,7 @@
           <input type="text" class="mail" id="mail" name="mail" />
           <span class="error" aria-live="polite"></span>
         </label>
-      </p>
+      </ul>
       <!-- Algunos navegadores con compatibilidad heredada deben tener el atributo «type»
              establecido explícitamente en el elemento «button» de «submit»-->
       <button type="submit">Enviar</button>
@@ -84,7 +146,9 @@
       // Esto es peligroso porque puedes construir fácilmente un bucle infinito.
       // En los navegadores modernos es mejor usar element.nextElementSibling
       let error = email;
+      console.log("Antes del while");
       while ((error = error.nextSibling).nodeType != 1);
+      console.log("Despues del while");
 
       // según la especificación HTML5
       const emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -106,7 +170,7 @@
           }
         };
       }
-
+      console.log("parte 2");
       // Ahora podemos reconstruir nuestra restricción de validación
       // Debido a que no confiamos en la pseudoclase de CSS, tenemos que
       // establecer explícitamente la clase valid/invalid en nuestro campo de correo electrónico
@@ -117,7 +181,7 @@
 
         email.className = test ? "valid" : "invalid";
       });
-
+      console.log("parte 3");
       // Esto define lo que sucede cuando el usuario escribe en el campo
       addEvent(email, "input", function () {
         const test = email.value.length === 0 || emailRegExp.test(email.value);
@@ -129,7 +193,7 @@
           email.className = "invalid";
         }
       });
-
+      console.log("Parte 4");
       // Esto define lo que sucede cuando el usuario intenta enviar los datos.
       addEvent(form, "submit", function () {
         const test = email.value.length === 0 || emailRegExp.test(email.value);
@@ -147,6 +211,7 @@
           error.className = "error";
         }
       });
+      console.log("fin script");
     </script>
   </body>
 </html>

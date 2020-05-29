@@ -6,7 +6,7 @@
     <title>Prueba Git-VS Code</title>
   </head>
   <body>
-    <form method="post">
+    <form>
       <ul>
         <li>
           <label for="nom1">Nom : </label>
@@ -40,6 +40,7 @@
           <label for="rue">Rue:</label>
           <input type="text" id="rue" name="rue" />
         </li>
+
         <li>
           <label for="ville">Ville:</label>
           <input type="text" id="ville" name="ville" />
@@ -68,29 +69,88 @@
           <label for="genre">Genre:</label>
           <input type="text" id="genre" name="genre" />
         </li>
+        <label for="mail">
+          <span>Puto texto</span>
+          <input type="text" class="mail" id="mail" name="mail" />
+          <span class="error" aria-live="polite"></span>
+        </label>
+        <span class="error" aria-live="polite"></span>
         <li class="button">
-          <button type="button" id="accion">Registra datos</button>
+          <button type="submit">Enviar Datos</button>
         </li>
+
         <script>
-          var boton = document.getElementById("accion");
-          if (boton.click) {
-            u_nom1 = document.getElementById("nom1").value;
-            u_nom2 = document.getElementById("nom2").value;
-            u_nomfam = document.getElementById("nomfam").value;
-            u_init = document.getElementById("init").value;
-            u_traitem = document.getElementById("traitem").value;
-            u_nomemp = document.getElementById("nomemp").value;
-            u_numciv = document.getElementById("numciv").value;
-            u_rue = document.getElementById("rue").value;
-            u_ville = document.getElementById("ville").value;
-            u_prov = document.getElementById("prov").value;
-            u_codpos = document.getElementById("codpos").value;
-            u_telephone = document.getElementById("telephone").value;
-            u_courriel = document.getElementById("courriel").value;
-            u_docident = document.getElementById("docident").value;
-            u_nom1 = document.getElementById("genre").value;
-            console.log(`2 El valor de rue es, ${u_rue}`);
+          const form = document.getElementsByTagName("form")[0];
+          const email = document.getElementById("rue");
+          let error = email;
+          console.log("antes del while");
+          while ((error = error.nextSibling).nodeType != 1);
+          console.log("despues del while");
+
+          // según la especificación HTML5
+          const emailRegExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+          // Muchos navegadores antiguos no son compatibles con el método addEventListener.
+          // Aquí hay una manera simple de manejar esto; está lejos de ser la única.
+          function addEvent(element, event, callback) {
+            let previousEventCallBack = element["on" + event];
+            element["on" + event] = function (e) {
+              const output = callback(e);
+
+              // Una devolución de llamada que devuelve «false» detiene la cadena de devolución de llamada
+              // e interrumpe la ejecución de la devolución de llamada del evento.
+              if (output === false) return false;
+
+              if (typeof previousEventCallBack === "function") {
+                output = previousEventCallBack(e);
+                if (output === false) return false;
+              }
+            };
           }
+
+          // Ahora podemos reconstruir nuestra restricción de validación
+          // Debido a que no confiamos en la pseudoclase de CSS, tenemos que
+          // establecer explícitamente la clase valid/invalid en nuestro campo de correo electrónico
+          addEvent(window, "load", function () {
+            // Aquí probamos si el campo está vacío (recuerda, el campo no es obligatorio)
+            // Si no es así, verificamos si su contenido es una dirección de correo electrónico con el formato correcto.
+            const test =
+              email.value.length === 0 || emailRegExp.test(email.value);
+
+            email.className = test ? "valid" : "invalid";
+          });
+
+          // Esto define lo que sucede cuando el usuario escribe en el campo
+          addEvent(email, "input", function () {
+            const test =
+              email.value.length === 0 || emailRegExp.test(email.value);
+            if (test) {
+              email.className = "valid";
+              error.innerHTML = "";
+              error.className = "error";
+            } else {
+              email.className = "invalid";
+            }
+          });
+
+          // Esto define lo que sucede cuando el usuario intenta enviar los datos.
+          addEvent(form, "submit", function () {
+            const test =
+              email.value.length === 0 || emailRegExp.test(email.value);
+
+            if (!test) {
+              email.className = "invalid";
+              error.innerHTML = "I expect an e-mail, darling!";
+              error.className = "error active";
+
+              // Algunos navegadores antiguos no son compatibles con el método event.preventDefault ()
+              return false;
+            } else {
+              email.className = "valid";
+              error.innerHTML = "";
+              error.className = "error";
+            }
+          });
         </script>
       </ul>
     </form>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Actualisation des éducatrices</title>
+    <style>
+      body {
+        font: 1em sans-serif;
+        width: 200px;
+        padding: 0;
+        margin: 0 auto;
+      }
+
+      form {
+        max-width: 200px;
+      }
+
+      p * {
+        display: block;
+      }
+
+      input.mail {
+        -webkit-appearance: none;
+
+        width: 100%;
+        border: 1px solid #333;
+        margin: 0;
+
+        font-family: inherit;
+        font-size: 90%;
+
+        box-sizing: border-box;
+      }
+
+      /* Este es nuestro diseño para los campos no válidos */
+      input.invalid {
+        border-color: #900;
+        background-color: #fdd;
+      }
+
+      input:focus.invalid {
+        outline: none;
+      }
+
+      /* Este es el diseño para nuestros mensajes de error */
+      .error {
+        width: 100%;
+        padding: 0;
+
+        font-size: 80%;
+        color: white;
+        background-color: #900;
+        border-radius: 0 0 5px 5px;
+        box-sizing: border-box;
+      }
+
+      .error.active {
+        padding: 0.3em;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <!=================Prénom================================>
+      <label for="prenom">Prénom: </label>
+      <input id="prenom" name="prenom" maxlength="40" required />
+      <!=================Nom Famille===========================>
+      <label for="nomfam">Nom Famille: </label>
+      <input id="nomfam" name="nomfam" maxlength="40" required />
+      <!=================Initials==============================>
+      <label for="init">Initials: </label>
+      <input id="init" name="init" maxlength="5" value="     "/>
+      <!=================Traitement============================>
+      <label for="traitem">Traitement: </label>
+      <input id="traitem" name="traitem" maxlength="5" />
+      <!=================Bouton================================>
+      <button>Enviar</button>
+    </form>
+    <script src=./nom.js></script>
+    <script>
+      let z_nomfam = document.getElementById("nomfam");
+      let z_prenom = document.getElementById("prenom");
+        if(z_nomfam !== undefined)
+        {        
+          let z_init = document.getElementById("init");
+          if ((z_init.value == "     ")) 
+          {
+          // Initials des noms
+            let nomprenom = z_prenom.value + " " + z_nomfam.value;
+            const popo = retourninitials(nomprenom);
+            document.getElementById("init").value = retourninitials(nomprenom);
+          }
+        }
+    </script>
+
+  </body>
+</html>
