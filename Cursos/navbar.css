@@ -1,0 +1,44 @@
+.enlace {
+  display: inline-block;
+  background: salmon;
+  color: #fff;
+  padding: 10px 30px;
+  text-decoration: none;
+}
+.enlace:hover {
+  background: rosybrown;
+}
+nav {
+  background: rebeccapurple;
+  padding: 10px;
+  display:flex;
+  justify-content: space-around;
+}
+.nav-button{
+  background:salmon;
+  color:#fff;
+  padding:10px 0px;
+  border: 2px solid #fff;
+  display:none
+}
+
+
+/* Utilizacion de media query para responsive */
+@media(max-width:500px){
+    .facet_sidebar{
+        display:none;
+    }
+    nav{
+        background:black;
+        flex-direction: column;
+    }
+    .enlace {
+        margin: 10px 0px;
+      }
+      .nav-button{
+        display:inline-block;
+      }
+      .desaparece{
+        display:none;
+      }
+}

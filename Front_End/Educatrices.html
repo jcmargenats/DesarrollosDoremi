@@ -3,99 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Actualisation des éducatrices</title>
-    <style>
-      body {
-        font: 1em sans-serif;
-        width: 200px;
-        padding: 0;
-        margin: 0 auto;
-      }
-
-      form {
-        max-width: 200px;
-      }
-
-      p * {
-        display: block;
-      }
-
-      input.mail {
-        -webkit-appearance: none;
-
-        width: 100%;
-        border: 1px solid #333;
-        margin: 0;
-
-        font-family: inherit;
-        font-size: 90%;
-
-        box-sizing: border-box;
-      }
-
-      /* Este es nuestro diseño para los campos no válidos */
-      input.invalid {
-        border-color: #900;
-        background-color: #fdd;
-      }
-
-      input:focus.invalid {
-        outline: none;
-      }
-
-      /* Este es el diseño para nuestros mensajes de error */
-      .error {
-        width: 100%;
-        padding: 0;
-
-        font-size: 80%;
-        color: white;
-        background-color: #900;
-        border-radius: 0 0 5px 5px;
-        box-sizing: border-box;
-      }
-
-      .error.active {
-        padding: 0.3em;
-      }
-    </style>
+    <title>Educatrices</title>
+    <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
+    <header>
+      <h1>Educatrices</h1>
+      <section>
+        <nav class="Nav">
+          <a href="#">menu 1</a>
+          <a href="#">menu 2</a>
+          <a href="#">menu 3</a>
+          <a href="#">menu 4</a>
+        </nav>
+      </section>
+      <!-- Aca pongo la tabla resultante del query -->
+    </header>
+    <section>
+      <table id="tabla">
+        <th>
+          <td class="title" width=17%>id Educatrice</td>
+          <td class="title" width=28%>Nom Famille</td>
+          <td class="title"width=25%>Prènom</td>
+          <td class="title"width=10%>Status</td>
+          <td class="title"width=5%>Groupes</td>
+          <td class="title"width=10%>Date Nais.</td>
+          <td class="title"width=5%>Date debut</td>
+        </th>
+        <tr>
+          <td id="idedu" class="title" width=17%>".$row[0]."</td>
+          <td id="nomfam" class="title" width=28%>".$row[1]."</td>
+          <td id="prenom[]" class="title"width=25%>".$row[2]."</td>
+          <td id="status" class="title"width=10%>".$row[3]."</td>
+          <td id="groupes" class="title"width=5%>".$row[4]."</td>
+          <td id="datnais" class="title"width=10%>".$row[5]."</td>
+          <td id="datdeb" class="title"width=5%>".$row[6]."</td>
+        </tr>
+      </table>
+    </section>
     <script>
+//var popo = document.querySelector('#tabla').textContent;
+//var popo2 = document.TEXT_NODE('#tabla');
+//document.querySelector('#prenom').textContent[1]=123;
+//document.querySelector('#prenom').textContent[1]=458;
+popo1 = document.getElementById("tabla").rows[0].cells[0].innerText; 
+popo2 = document.getElementById("tabla").rows[0].cells[1].innerText; 
+document.getElementById("tabla").rows[1].cells[1].innerText = 123;
+document.getElementById("tabla").rows[1].cells[2].innerText = "Juana";
+document.getElementById("tabla").rows[2].cells[1].innerText = 345;
 
-    </script>
-    <form>
-      <!=================Prénom================================>
-      <label for="prenom">Prénom: </label>
-      <input id="prenom" name="prenom" maxlength="40" required />
-      <!=================Nom Famille===========================>
-      <label for="nomfam">Nom Famille: </label>
-      <input id="nomfam" name="nomfam" maxlength="40" required />
-      <!=================Initials==============================>
-      <label for="init">Initials: </label>
-      <input id="init" name="init" maxlength="5" />
-      <!=================Traitement============================>
-      <label for="traitem">Traitement: </label>
-      <input id="traitem" name="traitem" maxlength="5" />
-      <!=================Bouton================================>
-      <button id="bouton1" onclick="validation()">Enviar </button>
-    </form>
-    <script src=./nom.js></script>
-    <script>
-      
-      function validation(){
-        console.log("entré en validación");
-        let z_nomfam = document.getElementById("nomfam");
-        console.log("valor de nomfam " + z_nomfam.value)
-
-        if(z_nomfam.value !== null){
-          var z_init = document.getElementById("init");
-          if (z_init.value !== "     ")
-          var z_prenom = document.getElementById("prenom");
-          var nomprenom = z_prenom.value + " " + z_nomfam.value;
-          document.getElementById("init").value = retourninitials(nomprenom);
-        }
-      }
     </script>
   </body>
 </html>

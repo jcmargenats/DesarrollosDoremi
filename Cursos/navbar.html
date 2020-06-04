@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="navbar.css" />
+  </head>
+  <body>
+    <nav>
+      <button class="nav-button" onclick="action()">
+        menu
+      </button>
+      <a href="#" class="enlace desaparece">Inicio</a>
+      <a href="#" class="enlace desaparece">Nosotros</a>
+      <a href="#" class="enlace desaparece">Servicios</a>
+      <a href="#" class="enlace desaparece">Contactos</a>
+    </nav>
+
+    <script>
+      function action(){
+         var ancla = document.getElementsByClassName("enlace")
+           for(var i = 0; i < ancla.length;i++){
+           ancla[i].classList.toggle('desaparece');
+           }
+      }
+    </script>
+  </body>
+</html>

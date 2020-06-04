@@ -7,18 +7,14 @@ function Nom(nom1, nom2, nomfam, init, traitem, nomemp) {
     (this.traitem = traitem),
     (this.nomemp = nomemp);
 }
-
+// poop
 function retourninitials(nombre) {
-  var separa = nombre.split("");
-  console.log(`este es separa : ${separa}`);
-  nombre = console.log(`este es el nombre : ${nombre}`);
-  separa[0].charAt(0) +
-    "." +
-    "" +
-    separa[0].charAt(0) +
-    "." +
-    "" +
-    separa[0].charAt() +
-    ".";
+  nombre = nombre.replace("-", " ");
+  var separa = nombre.split(" ");
+  nombre = separa[0].charAt(0);
+  for (j = 1; j < separa.length; j++) {
+    nombre = nombre + "." + separa[j].charAt(0);
+  }
+  nombre = nombre.toUpperCase() + ".";
   return nombre;
 }
