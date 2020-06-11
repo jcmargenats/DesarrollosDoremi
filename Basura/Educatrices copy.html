@@ -30,28 +30,31 @@
           <td class="title"width=10%>Date Nais.</td>
           <td class="title"width=5%>Date debut</td>
         </th>
-        <tr>
-          <td id="idedu" class="title" width=17%>".$row[0]."</td>
-          <td id="nomfam" class="title" width=28%>".$row[1]."</td>
-          <td id="prenom[]" class="title"width=25%>".$row[2]."</td>
-          <td id="status" class="title"width=10%>".$row[3]."</td>
-          <td id="groupes" class="title"width=5%>".$row[4]."</td>
-          <td id="datnais" class="title"width=10%>".$row[5]."</td>
-          <td id="datdeb" class="title"width=5%>".$row[6]."</td>
-        </tr>
+        <?php
+          <tr>
+            <td id="idedu" class="title" width=17%>".$row[0]."</td>
+            <td id="nomfam" class="title" width=28%>".$row[1]."</td>
+            <td id="prenom[]" class="title"width=25%>".$row[2]."</td>
+            <td id="status" class="title"width=10%>".$row[3]."</td>
+            <td id="groupes" class="title"width=5%>".$row[4]."</td>
+            <td id="datnais" class="title"width=10%>".$row[5]."</td>
+            <td id="datdeb" class="title"width=5%>".$row[6]."</td>
+          </tr>
+          ?>
       </table>
     </section>
+
+
     <script>
 //var popo = document.querySelector('#tabla').textContent;
 //var popo2 = document.TEXT_NODE('#tabla');
 //document.querySelector('#prenom').textContent[1]=123;
 //document.querySelector('#prenom').textContent[1]=458;
-popo1 = document.getElementById("tabla").rows[0].cells[0].innerText; 
-popo2 = document.getElementById("tabla").rows[0].cells[1].innerText; 
+//popo1 = document.getElementById("tabla").rows[0].cells[0].innerText; 
+//popo2 = document.getElementById("tabla").rows[0].cells[1].innerText; 
 document.getElementById("tabla").rows[1].cells[1].innerText = 123;
 document.getElementById("tabla").rows[1].cells[2].innerText = "Juana";
 document.getElementById("tabla").rows[2].cells[1].innerText = 345;
-
-    </script>
+    </script> 
   </body>
 </html>

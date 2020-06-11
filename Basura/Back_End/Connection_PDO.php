@@ -1,12 +1,13 @@
 <?php
-$link = 'mysql:host = localhost; dbname = desarrollosdoremi';
+$link = 'mysql:host = localhost; dbname = doremi';
 $user = 'root';
 $pass = '';
 
 try{
-$pdo = new pdo($link, $user, $pass);
+$errcon = true;
+$pdo = new PDO($link, $user, $pass);
+$errcon = false;
 
-echo 'conectado';
 //  falla el catch . . .
 }catch(PDOExeption $e){
     print "Error!: ".$e->getMessage()."<br/>";

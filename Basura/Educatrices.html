@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <form id="formu"></form>
+    <title>Educatrices</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+
+    <script>
+
+      function start() 
+      {
+//------------------------------------------------------------------------------------------------------------
+// llama a PHP con usuario y contraseña para traer educatrices      
+//------------------------------------------------------------------------------------------------------------                                         -
+        var tabla=[0][0];
+        var datos = new FormData(formu);
+        datos.append('user','Juanca')
+        datos.append('pass','Canio14!')
+        //  console.log(datos);
+        fetch("/DesarrollosDoremi/Back_End/TraerEducatrices.php",{
+          method:'POST',
+          body:datos})
+        .then(res => res.json())
+        .then((data) => .
+        {
+          console.log(data);
+          // tabla = data;
+
+        
+          // get the reference for the body
+
+          var mybody = document.getElementsByTagName("body")[0];
+        
+          // creates <table> and <tbody> elements
+          mytable     = document.createElement("table");
+          mytablebody = document.createElement("tbody");
+  
+          // creating all cells
+          for(var j = 0; j < tabla.length; j++) 
+          {
+            // creates a <tr> element
+            mycurrent_row = document.createElement("tr");
+  
+            for(var i = 0; i < tabla[0].length; i++) 
+            {
+              // creates a <td> element
+              mycurrent_cell = document.createElement("td");
+              // creates a Text Node
+              currenttext = document.createTextNode(tabla[j][i]);
+              // appends the Text Node we created into the cell <td>
+              mycurrent_cell.appendChild(currenttext);
+              // appends the cell <td> into the row <tr>
+              mycurrent_row.appendChild(mycurrent_cell);
+            }
+            // appends the row <tr> into <tbody>
+            mytablebody.appendChild(mycurrent_row);
+          }
+  
+          // appends <tbody> into <table>
+          mytable.appendChild(mytablebody);
+          // appends <table> into <body>
+          mybody.appendChild(mytable);
+          // sets the border attribute of mytable to 2;
+          mytable.setAttribute("border","2");
+        });
+      }
+  
+    </script>
+
+  </head>
+  <body  onload="start()">
+    <header>
+      <h1>Educatrices</h1>
+      <section>
+<!-- Barra de menu lateral, falta acomodar         -->
+        <nav class="Nav">
+          <a href="#">menu 1</a>
+          <a href="#">menu 2</a>
+          <a href="#">menu 3</a>
+          <a href="#">menu 4</a>
+        </nav>
+      </section>
+      <!-- Aca pongo la tabla resultante del query -->
+    </header>
+    <section>
+
+    </section>
+
+
+    <script>
+
+    </script> 
+  </body>
+</html>

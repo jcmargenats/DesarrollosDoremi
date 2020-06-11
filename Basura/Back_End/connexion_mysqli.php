@@ -2,7 +2,7 @@
   $host = "localhost";
   $user = "root";
   $pass = "";
-  $db = "desarrollosdoremi";
+  $db = "doremi";
   $charset = "utf8";
   $erreur = false;
   $connexion = new mysqli($host, $user, $pass, $db);
@@ -15,6 +15,7 @@
     if($connexion->character_set_name() !== $charset)
     {
       $erreur = $connexion->set_charset($charset);
+    
     }
   }
 

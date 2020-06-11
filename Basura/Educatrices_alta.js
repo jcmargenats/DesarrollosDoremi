@@ -5,6 +5,7 @@ formulario.addEventListener("submit", function (e) {
   var erreur = validation();
   if (!erreur) {
     var donnees = new FormData(formulario);
+    console.log(donnees);
     fetch("/DesarrollosDoremi/Back_End/post.php", {
       method: "POST",
       body: donnees,
