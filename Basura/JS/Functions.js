@@ -52,3 +52,25 @@ function genera_tabla(tablax, headx) {
   // modifica el atributo "border" de la tabla y lo fija a "2";
   tabla.setAttribute("border", "2");
 }
+
+// Fonction pour click dans utilisateur
+function addRowHandlers() {
+  var tabla = document.getElementById("tablab");
+  var rows = tablab.getElementsByTagName("tr");               
+  for (i = 0; i < rows.length; i++) {
+    var currentRow = tablab.rows[i];
+    var createClickHandler = function (row) {
+      return function () 
+      {
+        var cell = row.getElementsByTagName("td")[0];
+        var id = cell.innerHTML;
+        // On va mettre le programme de modification ici
+        
+
+        alert(`el usuario es ${id}`)
+      };
+    };
+    currentRow.onclick = createClickHandler(currentRow);
+  }
+}
+window.onload = addRowHandlers();

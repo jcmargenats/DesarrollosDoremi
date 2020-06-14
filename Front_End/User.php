@@ -8,13 +8,17 @@
     <link rel="stylesheet" href="./css/user.css" />
   </head>
   <body>
+    <?php
+      include_once "./PHP/fonctions.php";
+    ?>
     <h1>Utilisateurs</h1>
     <!-- Head pour le table -->
     <table id="tablah">
       <thead>
         <tr>
           
-          <td>Id de la Personne</td>
+          <td>Id de l'utilisateur</td>
+          <td>Nom Utilisateur</td>
           <td>Nom Famille</td>
           <td>Prénom</td>
           <td>Status</td>
@@ -22,14 +26,12 @@
           <td>Photo</td>
         </tr>
       </thead>
-    </table>  
-    <!-- Body de tbla -->
-    <table id="tablab">
       <tbody>
-        <!-- PHP ppour produire une table dinamique -->
+        <!-- PHP pour produire une table dinamique -->
         <?php
           // Lecture de la base de données
-          include_once "./PHP/connexion_mysqli.php";
+          
+          $connexion = connexion();
           // SQL à la base de données
           $sql1 = "select * from V_user";
           // Lecture
@@ -46,49 +48,25 @@
             { 
               echo "<tr id='linea'>"; 
               echo "<td>"; 
-              echo $sqlres['idpersonne'] . "</td><td>"; 
+              echo $sqlres['iduser']     . "</td><td>"; 
               echo $sqlres['nomuser']    . "</td><td>"; 
               echo $sqlres['nomfam']     . "</td><td>"; 
               echo $sqlres['prenom']     . "</td><td>"; 
               echo $sqlres['status']     . "</td><td>"; 
               echo $sqlres['role']       . "</td><td>"; 
-              echo $sqlres['photo_logo'] . "</td></tr>"; 
+              echo $sqlres['photo_logo'] . "</td><td>";      
+              $url = "window.location.href='usermodify.php?user=" . $sqlres['iduser'] . "'"; 
+              //echo $url;     
+              echo "<input type='button' value='Edit' onClick=".$url.">";   
+              echo "</td></tr>"; 
             }; 
+            // 
+            // 
             // Fermeture de connection à la base de donnée.
             $connexion->close(); 
           }; 
         ?>
       </tbody>
     </table>
-    <!-- Fonctions JavaScript -->
-    <script>
-      // Fonction pour click dans utilisateur
-      function addRowHandlers() {
-        var tabla = document.getElementById("tablab");
-        var rows = tablab.getElementsByTagName("tr");               
-        for (i = 0; i < rows.length; i++) {
-          var currentRow = tablab.rows[i];
-          var createClickHandler = function (row) {
-            return function () 
-            {
-              var cell = row.getElementsByTagName("td")[0];
-              var id = cell.innerHTML;
-              // On va mettre le programme de modification ici
-              <?php 
-                $id = $_GET['id']; 
-                echo "acatá" . $id;
-              ?>
-
-              //alert(`el usuario es ${id}`)
-            };
-          };
-          currentRow.onclick = createClickHandler(currentRow);
-        }
-      }
-      window.onload = addRowHandlers();
-    </script>
-    <?php
-
-    ?>
   </body>
 </html>
