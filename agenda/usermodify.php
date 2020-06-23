@@ -8,45 +8,13 @@
   </head>
   <body>
     <?php
-       include_once "./PHP/Fonctions.php";
+       include_once "./php/fonctions.php";
       // Recevoir 
       if(isset($_GET['user']))
       {
           $userid=$_GET['user'];
       }
-      // Validation du formulaire
-      if($_POST)
-      {
-        $iduser  = $_POST['iduser'];
-        $nomuser = $_POST['nomuser'];
-        $idstatus = $_POST['idstatus'];
-        // Fair un json avec les rôles
-        $rol = array();
-        // echo var_dump($_POST);
-        foreach($_POST as $elemen=>$valeur)
-        {
-          $pont = substr($elemen, 0, 4);
-          if($pont == 'role')
-          {
-            $rol[substr($elemen,4)] = $valeur;
-          }
-        }
-        $role=json_encode($rol);
-       // Enregistrer les modifications.
-        $connexion = connexion();
-        $sql1 = "update user set nomuser = '" . $nomuser . "', role = '" . $role . "', status = ";  
-        $sql1 = $sql1 . $idstatus . " where iduser = '" . $iduser . "'";
-        $datos = $connexion->query($sql1);
-        if($connexion->errno) 
-        {
-          echo"error de escritura"; 
-          die($connexion->error); 
-        }else
-        {
-          echo "<script> window.history.back(); </script>";
-          echo "paso por aca";
-        }         
-      }
+
       // Ouvrir la base de données
       $connexion = connexion(); 
       // ==========================================================
@@ -123,7 +91,7 @@
       // ================================================================
     ?>  
     <h1>Utilisateurs</h1>
-    <form id = "form01" name = "form01" method="POST" >
+    <form id="form01" name="form01" method="POST">
       <!-- =================Id Utilisateur======================= -->
       <label for="iduser">Id Utilisateur: </label>
       <?php
@@ -182,5 +150,51 @@
       <!-- =================Bouton================================ -->
     <button id="bouton1" type="submit">Enviar</button>
     </form>
+
+    <?php
+          // Validation du formulaire
+          if($_POST)
+          {
+            $iduser  = $_POST['iduser'];
+            $nomuser = $_POST['nomuser'];
+            $idstatus = $_POST['idstatus'];
+            // Fair un json avec les rôles
+            $rol = array();
+            // echo var_dump($_POST);
+            foreach($_POST as $elemen=>$valeur)
+            {
+              $pont = substr($elemen, 0, 4);
+              if($pont == 'role')
+              {
+                $rol[substr($elemen,4)] = $valeur;
+              }
+            }
+            $role=json_encode($rol);
+           // Enregistrer les modifications.
+            $connexion = connexion();
+            $sql1 = "update user set nomuser = '" . $nomuser . "', role = '" . $role . "', status = ";  
+            $sql1 = $sql1 . $idstatus . " where iduser = '" . $iduser . "'";
+            $datos = $connexion->query($sql1);
+            if($connexion->errno) 
+            {
+              echo"error de escritura"; 
+              die($connexion->error); 
+            }else
+            {
+              $salir = true;
+              
+              // echo "paso por aca";
+              // echo "<script> goBack(); function goBack() { window.history.back()}</script>";
+              // echo "no lo hizo";
+            }         
+          }
+         
+         ?>
+
+<script> function goBack() {
+  window.history.back();
+}
+  </script>
+    <button onClick="goBack()">volver</button>
   </body>
 </html>

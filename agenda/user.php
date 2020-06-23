@@ -9,9 +9,12 @@
   </head>
   <body>
     <?php
-      include_once "./PHP/fonctions.php";
+    include_once "./php/fonctions.php";
     ?>
     <h1>Utilisateurs</h1>
+    <?php
+      echo "<input type='button' value='Alta' onClick=window.location.href='useralta.php'>";   
+    ?>  
     <!-- Head pour le table -->
     <table id="tablah">
       <thead>
@@ -33,7 +36,7 @@
           
           $connexion = connexion();
           // SQL à la base de données
-          $sql1 = "select * from V_user";
+          $sql1 = "select * from v_user";
           // Lecture
           $datos = $connexion->query($sql1); 
           // Validation
@@ -55,9 +58,8 @@
               echo $sqlres['status']     . "</td><td>"; 
               echo $sqlres['role']       . "</td><td>"; 
               echo $sqlres['photo_logo'] . "</td><td>";      
-              $url = "window.location.href='usermodify.php?user=" . $sqlres['iduser'] . "'"; 
-              //echo $url;     
-              echo "<input type='button' value='Edit' onClick=".$url.">";   
+              echo "<input type='button' value='Edit' onClick=window.location.href='usermodify.php?user=";
+              echo $sqlres['iduser'] . "'>";   
               echo "</td></tr>"; 
             }; 
             // 
